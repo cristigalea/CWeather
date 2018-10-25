@@ -1,5 +1,4 @@
 //Component that displays the default screen
-
 import React, { Component } from 'react';
 import { 
   View, 
@@ -91,8 +90,11 @@ export default class Search extends Component {
     if (!this.state.city) {
       Alert.alert('Please provide a city name!');
     } else {
+      // Perf.start();
       api.getWeatherByCityName(this.state.city, this.state.isMetric)
         .then((data) => { 
+          // Perf.stop();
+          // console.log('the request took ' + Perf.getLastMeasurements() + ' milliseconds');
           console.log('data was ', data);
           if (data.cod == '200') {
             this.props.navigator.push({
